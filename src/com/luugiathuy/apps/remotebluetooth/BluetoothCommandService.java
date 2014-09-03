@@ -3,6 +3,7 @@ package com.luugiathuy.apps.remotebluetooth;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Scanner;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -321,18 +322,18 @@ public class BluetoothCommandService {
             
             // Keep listening to the InputStream while connected
             while (true) {
-                try {
-                	// Read from the InputStream
-                    int bytes = mmInStream.read(buffer);
-
-                    // Send the obtained bytes to the UI Activity
-                    mHandler.obtainMessage(RemoteBluetooth.MESSAGE_READ, bytes, -1, buffer)
-                            .sendToTarget();
-                } catch (IOException e) {
-                    Log.e(TAG, "disconnected", e);
-                    connectionLost();
-                    break;
-                }
+                	Scanner s=new Scanner(mmInStream);
+                	Log.i("btmessage", s.nextLine());
+                	
+                	/*
+                	try {
+                	 // Read from the InputStream
+                		mmInStream.read(buffer);
+						Log.i("btmessage", s.nextLine());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}*/
+                	
             }
         }
 
